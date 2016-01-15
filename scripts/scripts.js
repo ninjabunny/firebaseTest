@@ -52,6 +52,9 @@
     if($('#' + user.name).length === 0 && user.name !== undefined){
       $('#flexy').append("<li id='"+ user.name +"'class='flex-item' onclick='fire()'></li>");  
     }
+    if(user.name === name){
+      $('#' + name).text('Me');
+    }
   });
 
   // Update our GUI to remove the status of a user who has left.
