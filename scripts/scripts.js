@@ -35,7 +35,7 @@
     }
   });
 
-  // A helper function to let us set our own state.
+  // A helper function to let us set our own state. 
   function setUserStatus(status) {
     // Set our status in the list of online users.
     currentStatus = status;
