@@ -49,22 +49,35 @@
   // Update our GUI to show someone"s online status.
   userListRef.on("child_added", function(snapshot) {
     var user = snapshot.val();
-    $('#flexy').append("<li id='"+ user.name +"'class='flex-item'></li>");
-    // $("<div/>")
-    //   .attr("id", getMessageId(snapshot))
-    //   .text(user.name + " is currently " + user.status)
-    //   .appendTo("#presenceDiv");
+    $('#flexy').append("<li id='"+ user.name +"'class='flex-item' onclick='fire()'></li>");
   });
 
   // Update our GUI to remove the status of a user who has left.
   userListRef.on("child_removed", function(snapshot) {
-    $("#presenceDiv").children("#" + getMessageId(snapshot))
-      .remove();
+    var user = snapshot.val();
+    // $('.' + user.name).children("#" + getMessageId(snapshot))
+    //   .remove();
+    $('#' + user.name).remove();
   });
 
   // Update our GUI to change a user"s status.
   userListRef.on("child_changed", function(snapshot) {
     var user = snapshot.val();
-    $("#presenceDiv").children("#" + getMessageId(snapshot))
-      .text(user.name + " is currently " + user.status);
+    $('#' + user.name).remove();
   });
+
+
+  function changeColor(selector, colors, time) {
+    $(selector).css("background-color", colors[0]);
+    setTimeout(function () {
+      $(selector).css("background-color", colors[1]);
+    }, time);
+  };
+  $(window).load(function () {
+      changeColor("#" + name, ["green", "white"], 3000);
+  });
+
+  function fire(){
+      changeColor("#" + name, ["green", "white"], 3000);
+  }
+
